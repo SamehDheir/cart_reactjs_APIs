@@ -11,3 +11,38 @@ nav {
     top: 15px;
     font-size: 17px;
 }
+
+.itemCart {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    height: 120px;
+    align-items: center;
+    padding: 10px 0;
+    box-shadow: 0px 4px 4px rgb(210, 208, 208);
+}
+
+.itemCart img {
+    width: 70px;
+    height: 70px;
+}
+
+.itemCart h5 {
+    font-size: 15px;
+    font-weight: 700;
+    width: 200px;
+}
+
+.itemCart h6 {
+    font-weight: 900;
+    font-size: 20px;
+    text-align: start;
+}
+
+.empty {
+    text-shadow: 0 4px 4px rgb(176, 175, 175);
+}
+
+hr {
+    margin: 1px 0;
+}

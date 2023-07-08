@@ -24,20 +24,15 @@ function App() {
   useEffect(() => {
     fetchData();
   }, []);
-  const clickHandle = () => {
+
+  const [cartItems, setCartItems] = useState([]);
+
+  const clickHandle = (item) => {
     setCounter(counter + 1);
-    // toast("Added To Cart Successfully", {
-    //   position: "top-right",
-    //   autoClose: 5000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: true,
-    //   progress: undefined,
-    // });
+    setCartItems([...cartItems, item]);
     toast.success(" Added To Cart Successfully", {
-      position: "top-center",
-      autoClose: 3000,
+      position: "bottom-right",
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -45,11 +40,32 @@ function App() {
       progress: undefined,
       theme: "colored",
     });
+    // console.log(cartItems);
+  };
+
+  const removeFromCart = (index) => {
+    const updatedCartItems = [...cartItems];
+    updatedCartItems.splice(index, 1);
+    setCartItems(updatedCartItems);
+    toast.success("Delete Successfully", {
+      position: "bottom-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
   };
 
   return (
     <div>
-      <Navbar counter={counter} />
+      <Navbar
+        counter={counter}
+        cartItems={cartItems}
+        removeFromCart={removeFromCart}
+      />
       {data ? (
         <div className="products">
           {data.map((product) => (
@@ -58,7 +74,10 @@ function App() {
               <img src={product.image} />
               <h3>$ {product.price}</h3>
               <p>{product.description}</p>
-              <button className="btn btn-primary mt-5" onClick={clickHandle}>
+              <button
+                className="btn btn-primary mt-5"
+                onClick={() => clickHandle(product)}
+              >
                 Add To Cart
               </button>
             </div>
@@ -68,8 +87,8 @@ function App() {
         <Loading />
       )}
       <ToastContainer
-        position="top-right"
-        autoClose={3000}
+        position="bottom-right"
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -78,6 +97,18 @@ function App() {
         draggable
         pauseOnHover
         theme="colored"
+      />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        theme="dark"
       />
     </div>
   );
