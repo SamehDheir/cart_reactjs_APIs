@@ -1,7 +1,7 @@
 import React from "react";
 import "./Navbar.css";
 
-function Navbar() {
+function Navbar({ counter }) {
   return (
     <nav class="navbar bg-body-tertiary fixed-top">
       <div class="container">
@@ -17,8 +17,8 @@ function Navbar() {
           aria-label="Toggle navigation"
         >
           <i class="fa-solid fa-cart-shopping"></i>
-          <span class="position-absolute top-25 translate-middle badge rounded-pill bg-danger">
-            1
+          <span class="position-absolute translate-middle badge rounded-pill bg-danger">
+            {counter}
           </span>
         </button>
         <div
